@@ -1,5 +1,6 @@
 
-
+show_input = document.createElement("h3");
+show_input.classList.add("display-4");
 maincontainer = document.querySelector(".main");
 const createrow= ()=>{
 
@@ -24,11 +25,14 @@ const create_but = () =>{
     but.setAttribute("type", "button")
     but.classList.add("btn")
     but.classList.add("btn-outline-primary")
+
+    but.addEventListener("click", (event)=>{
+        show_input.innerHTML+=but.innerHTML();
+    })
     return but;
 }
 
-show_input = document.createElement("h3");
-show_input.classList.add("display-4");
+
 maincontainer.appendChild(show_input);
 for(let x = 0; x<4; x++)
 {
@@ -78,7 +82,6 @@ let but = create_but();
 but.innerHTML="F"
 col.appendChild(but)
 r.appendChild(col)
-
 maincontainer.appendChild(r)
 
 
