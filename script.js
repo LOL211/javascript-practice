@@ -27,7 +27,10 @@ const create_but = () =>{
     but.classList.add("btn-outline-primary")
 
     but.addEventListener("click", (event)=>{
-        show_input.innerHTML+=but.innerHTML();
+        console.log("here");
+        console.log(but.innerHTML);
+        
+        show_input.innerHTML+=but.innerHTML;
     })
     return but;
 }
