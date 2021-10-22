@@ -20,6 +20,10 @@ h3
 {
     width:fit-content;
     margin: auto;
+    color: white;
+}
+body{
+    background-color: black;
 }
 h1{
     color:var(--bs-yellow)
