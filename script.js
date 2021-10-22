@@ -1,6 +1,14 @@
 
 show_input = document.createElement("h3");
 show_input.classList.add("display-4");
+show_input.classList.add('justify-content-center');
+show_result = document.createElement("h3");
+show_result.classList.add("display-4");
+show_result.classList.add('justify-content-center');
+
+var state_43 = true;
+var sum = 0;
+var subjects = 0;
 maincontainer = document.querySelector(".main");
 const createrow= ()=>{
 
@@ -29,14 +37,82 @@ const create_but = () =>{
     but.addEventListener("click", (event)=>{
         console.log("here");
         console.log(but.innerHTML);
-        
-        show_input.innerHTML+=but.innerHTML;
+        show_input.innerHTML+=but.innerHTML+"  ";
+        subjects+=1;
+        show_result.innerHTML=calc_result(but.innerHTML);
     })
     return but;
 }
 
+const grade_val = (grade)=>{
+let val = 0;
+switch(grade.charAt(0)){
+
+    case 'A':
+        val=4;
+        break;
+    
+    case 'B':
+        val=3;
+        break;
+    
+    case 'C':
+        val=2;
+        break;
+
+    case 'D':
+        val=1;
+        break;
+    
+    case 'F':
+        val=0;
+        break;
+    }
+    if(grade.length==1)
+        return val;
+    else{
+        if(val==4 && grade.charAt(1)=="+" && state_43)
+            return 4.3;
+        else if(val==4 && grade.charAt(1)=="+")
+            return 4;
+        else{
+            switch(grade.charAt(1))
+            {
+                case '+':
+                   return val+0.3;
+                case '-':
+                    return val-0.3;
+            }
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+const calc_result = (grade)=>{
+    sum+=grade_val(grade);
+
+    
+
+    return "GPA: "+(sum/subjects).toFixed(2);
+
+}
 
 maincontainer.appendChild(show_input);
+
+maincontainer.appendChild(show_result);
+
 for(let x = 0; x<4; x++)
 {
     let letter = String.fromCharCode(65 + x)

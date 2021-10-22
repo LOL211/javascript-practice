@@ -16,10 +16,11 @@
 .col{
     width:fit-content
 }
-
-/* body{
-    background-image:url("bg.jpg");
-} */
+h3
+{
+    width:fit-content;
+    margin: auto;
+}
 h1{
     color:var(--bs-yellow)
 }
