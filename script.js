@@ -28,7 +28,7 @@ const create_but = () =>{
 }
 
 show_input = document.createElement("h3");
-show_input.classList.add("display 4");
+show_input.classList.add("display-4");
 maincontainer.appendChild(show_input);
 for(let x = 0; x<4; x++)
 {
