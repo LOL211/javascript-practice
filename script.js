@@ -26,21 +26,28 @@ const createcol= ()=>{
     create.classList.add('xs')
 return create;
 }
+const stack = []
+const pop = () =>  { return stack.pop()};
+const push = (item) =>  stack.push(item);
 
-const create_but = () =>{
+const create_but = (add=true) =>{
     let but = document.createElement("button")
     
     but.setAttribute("type", "button")
     but.classList.add("btn")
     but.classList.add("btn-outline-primary")
-
-    but.addEventListener("click", (event)=>{
-        console.log("here");
-        console.log(but.innerHTML);
-        show_input.innerHTML+=but.innerHTML+"  ";
-        subjects+=1;
-        show_result.innerHTML=calc_result(but.innerHTML);
-    })
+    if(add)
+    {
+        but.addEventListener("click", (event)=>{
+            console.log("here");
+            console.log(but.innerHTML);
+            show_input.innerHTML+=but.innerHTML+"  ";
+            subjects+=1;
+            push(grade_val);
+            show_result.innerHTML=calc_result(but.innerHTML);
+        })
+    }
+   
     return but;
 }
 
@@ -102,9 +109,6 @@ switch(grade.charAt(0)){
 
 const calc_result = (grade)=>{
     sum+=grade_val(grade);
-
-    
-
     return "GPA: "+(sum/subjects).toFixed(2);
 
 }
@@ -160,7 +164,39 @@ let col = createcol();
 let but = create_but();
 but.innerHTML="F"
 col.appendChild(but)
+let col2 = createcol();
+let but2 = create_but(false);
+but2.innerHTML="Del"
+
+but2.addEventListener("click", ()=>{
+
+subjects-=1;
+remove = pop();
+sum-=remove
+
+if(remove.toString().length==1)
+{
+    var string = show_input.innerHTML;
+    show_input.innerHTML = string.slice(0, string.length-2)
+    
+}
+else{
+  
+    var string = show_input.innerHTML;
+    show_input.innerHTML = string.slice(0, string.length-3)
+
+}
+
+show_result.innerHTML="GPA: "+(sum/subjects).toFixed(2);
+
+});
+col2.appendChild(but2)
+
+
+
 r.appendChild(col)
+r.appendChild(col2)
+
 maincontainer.appendChild(r)
 
 
