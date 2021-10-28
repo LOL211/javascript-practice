@@ -21,13 +21,16 @@ return r;
 const createcol= ()=>{
 
     let create = document.createElement("div");
-    console.log(create)
+   // console.log(create)
     create.classList.add("col");
     create.classList.add('xs')
 return create;
 }
 const stack = []
 const pop = () =>  { return stack.pop()};
+
+
+
 const push = (item) =>  stack.push(item);
 
 const create_but = (add=true) =>{
@@ -39,11 +42,11 @@ const create_but = (add=true) =>{
     if(add)
     {
         but.addEventListener("click", (event)=>{
-            console.log("here");
-            console.log(but.innerHTML);
+            // console.log("here");
+            // console.log(but.innerHTML);
             show_input.innerHTML+=but.innerHTML+"  ";
             subjects+=1;
-            push(grade_val);
+            push(grade_val(but.innerHTML));
             show_result.innerHTML=calc_result(but.innerHTML);
         })
     }
@@ -122,7 +125,7 @@ for(let x = 0; x<4; x++)
     let letter = String.fromCharCode(65 + x)
     var row = createrow();
     
-    console.log(row)
+    //console.log(row)
     for(let c = 0; c<3; c++)
     {
         var create=""
@@ -151,7 +154,7 @@ for(let x = 0; x<4; x++)
         let but = create_but();
         but.innerHTML=tmp;
         create.appendChild(but);
-        console.log(create, row)
+       // console.log(create, row)
         row.appendChild(create);
     }
     maincontainer.appendChild(row);
@@ -170,24 +173,36 @@ but2.innerHTML="Del"
 
 but2.addEventListener("click", ()=>{
 
+
+    if(subjects<=0) return;
+
+
 subjects-=1;
 remove = pop();
+//console.log("remove is ",remove)
+//console.log("sum was ", sum)
 sum-=remove
+//console.log("sum is ", sum)
 
+var string = show_input.innerHTML;
+//console.log("String is ",string, "length is ",string.length)
 if(remove.toString().length==1)
 {
-    var string = show_input.innerHTML;
-    show_input.innerHTML = string.slice(0, string.length-2)
+ 
+   // console.log("length is 1 ",string.substring(0,string.length-3))
+    show_input.innerHTML = string.substring(0,string.length-3)
     
 }
 else{
-  
-    var string = show_input.innerHTML;
-    show_input.innerHTML = string.slice(0, string.length-3)
+
+   // console.log("length is 2 ",string.substring(0,string.length-4))
+    show_input.innerHTML = string.substring(0,string.length-4)
 
 }
-
+if(subjects!=0)
 show_result.innerHTML="GPA: "+(sum/subjects).toFixed(2);
+else
+show_result.innerHTML=""
 
 });
 col2.appendChild(but2)
