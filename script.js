@@ -2,7 +2,7 @@
 show_input = document.createElement("h3");
 show_input.classList.add("display-4");
 show_input.classList.add('justify-content-center');
-show_input.innerHTML='<br></br>'
+show_input.innerHTML='<br><br>'
 show_result = document.createElement("h3");
 show_result.classList.add("display-4");
 show_result.classList.add('justify-content-center');
@@ -44,7 +44,12 @@ const create_but = (add=true) =>{
         but.addEventListener("click", ()=>{
             // console.log("here");
             // console.log(but.innerHTML);
-            show_input.innerHTML+=but.innerHTML+"  ";
+            if(show_input.innerHTML!='<br><br>')
+            {
+                show_input.innerHTML+=but.innerHTML+"  ";
+            }
+            else
+            show_input.innerHTML=but.innerHTML+"  ";
             subjects+=1;
             push(grade_val(but.innerHTML));
             show_result.innerHTML=calc_result(but.innerHTML);
@@ -202,7 +207,7 @@ else{
 if(subjects!=0)
 show_result.innerHTML="GPA: "+(sum/subjects).toFixed(2);
 else
-show_result.innerHTML=""
+show_result.innerHTML="<br><br>"
 
 });
 col2.appendChild(but2)
