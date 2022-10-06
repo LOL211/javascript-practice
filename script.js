@@ -2,7 +2,7 @@
 show_input = document.createElement("h3");
 show_input.classList.add("display-4");
 show_input.classList.add('justify-content-center');
-show_input.innerHTML=' '   
+show_input.innerHTML='<br></br>'
 show_result = document.createElement("h3");
 show_result.classList.add("display-4");
 show_result.classList.add('justify-content-center');
